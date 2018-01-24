@@ -1,4 +1,5 @@
 FROM alpine:3.6
+LABEL maintainer="Timo Taskinen <timo.taskinen@iki.fi>"
 RUN apk add --no-cache tftp-hpa
 EXPOSE 69/udp
 ENTRYPOINT ["in.tftpd"]
