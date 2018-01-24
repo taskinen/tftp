@@ -1,4 +1,4 @@
-FROM alpine:3.6
+FROM alpine:3.7
 LABEL maintainer="Timo Taskinen <timo.taskinen@iki.fi>"
 RUN apk add --no-cache tftp-hpa
 EXPOSE 69/udp
