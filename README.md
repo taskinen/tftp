@@ -1,18 +1,27 @@
 # TFTP server
 
-Dockerized tftp-hpa server running in Alpine Linux.
+Dockerized TFTP server running in Alpine Linux.
 
 ## Example
 
+To use this container as a TFTP server for PXE boot, start the
+container with the following Compose configuration:
+
 ```
-version: '2'
+version: '3'
 
 services:
-  server:
-    image: taskinen/tftp
+  tftp-server:
+    image: taskinen/tftp:latest
+    entrypoint: in.tftpd
+    command: -L -4 --secure --address 0.0.0.0:69 --verbosity 3 /var/tftpboot
     ports:
-      - "69:69/udp"
+      - "0.0.0.0:69:69/udp"
     volumes:
-      - /var/docker-volumes/tftp/tftpboot:/var/tftpboot:ro
+      - ./tftpboot:/var/tftpboot:ro
     restart: unless-stopped
 ```
+
+Put your `pxelinux.0` boot file to `./tftpboot` directory and configure
+your DHCP server to issue command to boot your clients from `pxelinux.0`
+from your Docker host's IP address.
