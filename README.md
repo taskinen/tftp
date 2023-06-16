@@ -12,7 +12,7 @@ version: '3'
 
 services:
   tftp-server:
-    image: ghcr.io/wxx9248/tftpd:latest
+    image: ghcr.io/wxx9248/tftpd:master
     entrypoint: in.tftpd
     command: -L -4 --secure --address 0.0.0.0:69 --verbosity 3 /var/tftpboot
     ports:
