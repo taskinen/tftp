@@ -1,7 +1,8 @@
-FROM alpine:latest
-LABEL maintainer="Timo Taskinen <timo.taskinen@iki.fi>"
-RUN apk add --update --no-cache \
-  tftp-hpa
+FROM alpine:3.18.2
+LABEL maintainer="wxx9248 <wxx9248@wxx9248.top>"
+
+RUN apk add --update --no-cache tftp-hpa
+
 EXPOSE 69/udp
 ENTRYPOINT ["in.tftpd"]
 CMD ["-L", "--secure", "/var/tftpboot"]
